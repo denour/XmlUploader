@@ -10,10 +10,12 @@ use XmlUploader\Errors\ErrorQuantity;
 final class XmlUploader
 {
     private $xml;
+    private $files;
 
     public function __construct(Options $options)
     {
         $this->options = $options;
+        $this->validateXmls();
     }
 
     /**
@@ -21,19 +23,27 @@ final class XmlUploader
      *
      * @return array|XmlHandler
      */
-    public function getFiles()
+    private function validateXmls()
     {
         $this->verifyParamName();
-        $files = $_FILES[$this->options->paramName];
+        $this->files = $_FILES[$this->options->paramName];
         $this->hasRequiredQuantityFiles($files);
 
-        if (is_array($files[Files::TEMP_NAME])) {
+        if (is_array($this->files[Files::TEMP_NAME])) {
             $this->xml = $this->filesLoop($files);
         } else {
-            $this->xml = new XmlHandler($files[Files::TEMP_NAME], $files[Files::NAME], $files[Files::SIZE], $this->options);
+            $this->xml = new XmlHandler($this->files[Files::TEMP_NAME], $this->files[Files::NAME], $this->files[Files::SIZE], $this->options);
         }
 
         return $this->xml;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFiles()
+    {
+        return $this->files;
     }
 
     /**
