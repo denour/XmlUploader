@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nestorcastro
- * Date: 2/1/17
- * Time: 5:25 PM
- */
 
 namespace XmlUploader\Constants;
-
 
 class Files
 {

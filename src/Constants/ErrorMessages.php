@@ -4,7 +4,6 @@ namespace XmlUploader\Constants;
 
 class ErrorMessages
 {
-
     const ERROR_PARSE = 'El archivo no contiene un formato de XML';
     const ERROR_MISSING_REQUIRED_NODES = 'El Xml debe contener todos los nodos requeridos';
     const ERROR_SIZE = 'El archivo Excede la el tamaño';

@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nestorcastro
- * Date: 1/31/17
- * Time: 4:58 PM
- */
 
 namespace XmlUploader;
-
 
 use XmlUploader\Constants\SizeValues;
 

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace XmlUploader\Constants;
-
 
 class SizeValues
 {
