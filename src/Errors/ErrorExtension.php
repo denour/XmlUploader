@@ -4,5 +4,4 @@ namespace XmlUploader\Errors;
 
 class ErrorExtension extends \Exception
 {
-
 }

@@ -10,25 +10,23 @@ use XmlUploader\Errors\ErrorExtension;
 use XmlUploader\Errors\ErrorMissingRequiredNodes;
 use XmlUploader\Errors\ErrorParse;
 use XmlUploader\Errors\ErrorSize;
-use XmlUploaderErrorExtension;
 
 final class XmlHandler
 {
     public $xml;
 
-    function __construct($file, $name, $size, $option)
+    public function __construct($file, $name, $size, $option)
     {
         $this->isValidXml($file, $name, $size, $option);
     }
 
     /**
      * @param $file
-     * @param string $name
+     * @param string  $name
      * @param Options $option
      */
-    public function isValidXml($file, $name = '', $size, Options $option)
+    public function isValidXml($file, $name, $size, Options $option)
     {
-
         $requiredNodes = $option->nodes;
         $this->hasXmlExtension($name);
         $this->hasRequiredSize($size, $option);
@@ -43,6 +41,7 @@ final class XmlHandler
 
     /**
      * @param $name
+     *
      * @throws ErrorExtension
      */
     private function hasXmlExtension($name)
@@ -56,19 +55,23 @@ final class XmlHandler
 
     /**
      * @param $file
-     * @return DOMDocument
+     *
      * @throws ErrorParse
+     *
+     * @return DOMDocument
      */
     private function parseFile($file)
     {
         try {
-            set_error_handler(function () {});
+            set_error_handler(function () {
+            });
             $dom = new DOMDocument();
             $dom->loadXml($this->file_get_contents_utf8($file));
             restore_error_handler();
         } catch (DOMException $exception) {
             throw new ErrorParse(ErrorMessages::ERROR_PARSE);
         }
+
         return $dom;
     }
 
@@ -84,10 +87,10 @@ final class XmlHandler
         }
     }
 
-
     /**
      * @param $dom
      * @param $requiredNodes
+     *
      * @throws ErrorMissingRequiredNodes
      */
     private function hasRequiredNodes($dom, &$requiredNodes)
@@ -102,16 +105,20 @@ final class XmlHandler
 
     /**
      * @param $fn
+     *
      * @return string
      */
-    private function file_get_contents_utf8($fn) {
+    private function file_get_contents_utf8($fn)
+    {
         $content = file_get_contents($fn);
+
         return mb_convert_encoding($content, Files::UTF8, mb_detect_encoding($content, Files::ENCODING_LIST, true));
     }
 
     /**
      * @param $size
      * @param Options $option
+     *
      * @throws ErrorSize
      */
     public function hasRequiredSize($size, Options $option)

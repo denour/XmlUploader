@@ -17,12 +17,12 @@ final class XmlUploader
     }
 
     /**
-     * @return array|XmlHandler
      * @throws ErrorOptionFile
+     *
+     * @return array|XmlHandler
      */
     public function getFiles()
     {
-
         $this->verifyParamName();
         $files = $_FILES[$this->options->paramName];
         $this->hasRequiredQuantityFiles($files);
@@ -32,11 +32,13 @@ final class XmlUploader
         } else {
             $this->xml = new XmlHandler($files[Files::TEMP_NAME], $files[Files::NAME], $files[Files::SIZE], $this->options);
         }
+
         return $this->xml;
     }
 
     /**
      * @param $files
+     *
      * @throws ErrorQuantity
      */
     private function hasRequiredQuantityFiles($files)
@@ -49,6 +51,7 @@ final class XmlUploader
 
     /**
      * @param $files
+     *
      * @return array
      */
     private function filesLoop($files):array
@@ -59,6 +62,7 @@ final class XmlUploader
             $size = $files[Files::SIZE][$key];
             $handler[] = new XmlHandler($file, $name, $size, $this->options);
         }
+
         return $handler;
     }
 
@@ -71,5 +75,4 @@ final class XmlUploader
             throw new ErrorOptionFile(ErrorMessages::ERROR_OPTION_FILENAME);
         }
     }
-
 }

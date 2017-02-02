@@ -16,16 +16,16 @@ final class Options
      * @param $size
      * @param $type
      */
-    public function setSize(int $size, int $type) {
-
-        $this->size = $size *  $type;
-
+    public function setSize(int $size, int $type)
+    {
+        $this->size = $size * $type;
     }
 
     /**
      * @return string
      */
-    public function getSize() {
+    public function getSize()
+    {
         return $this->size;
     }
 }
