@@ -1,0 +1,18 @@
+{
+    "name": "denour/xmluploader",
+    "description": "Validador de XML",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nestor Castro",
+            "email": "nestweb20@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "XmlUploader\\": "src/"
+        }
+    }
+}
